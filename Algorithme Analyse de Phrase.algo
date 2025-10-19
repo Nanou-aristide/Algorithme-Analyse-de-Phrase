@@ -1,0 +1,41 @@
+
+VAR
+    phrase : STRING
+    longueur : INTEGER
+    nbMots : INTEGER
+    nbVoyelles : INTEGER
+    i : INTEGER
+    voyelles : STRING
+    dansMot : BOOLEAN
+BEGIN
+    phrase := "Bonjour a tous les gas."
+    longueur := 0
+    nbMots := 0
+    nbVoyelles := 0
+    voyelles := "aeiouyAEIOUY"
+    dansMot := FALSE
+
+    i := 1
+    WHILE i <= LENGTH(phrase) DO
+        longueur := longueur + 1
+
+        IF phrase[i] = ' ' OR phrase[i] = '.' OR phrase[i] = ',' THEN
+            IF dansMot THEN
+                nbMots := nbMots + 1
+                dansMot := TRUE
+            ENDIF
+        ELSE
+            dansMot := FALSE
+            IF phrase[i] in voyelles > 0 THEN
+                nbVoyelles := nbVoyelles + 1
+            ENDIF
+
+        i := i + 1
+
+    ENDWHILE
+    longueur := LENGTH(phrase) + 1
+    write("Longueur de la phrase : " + STRING(longueur))
+    write("Nombre de mots : " + STRING(nbMots))
+    write("Nombre de voyelles : " + STRING(nbVoyelles))
+END
+ 
